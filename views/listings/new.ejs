@@ -1,0 +1,70 @@
+<% layout('./layout/boilerplate') -%>
+
+    <body>
+        <div class="rows">
+            <div class="col-8 offset-2">
+                <br><br>
+                <h3>Create a New Listing</h3>
+                <form action="/listing/new" method="POST" class="mb-5 needs-validation" enctype="multipart/form-data" novalidate>
+                    <!-- title  -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input name="listing[title]" placeholder="Add a chachy title" id="title" type="text"
+                            class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter title
+                        </div>
+                    </div>
+                    <!-- description -->
+                    <div class="mb-3">
+                        <lable for="description" class="form-label">Description</lable>
+                        <textarea name="listing[description]" type="text" class="form-control" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter Description
+                        </div>
+                    </div>
+                    <!-- price  -->
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input name="listing[price]" value="1,000" id="price" type="number" class="form-control"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter price
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- location  -->
+                        <div class="mb-3 col-md-4">
+                            <label for="location" class="form-label">Location</label>
+                            <input name="listing[location]" placeholder="Uttrakhan, Dehradun" id="location" type="text"
+                                class="form-control" required>
+                            <div class="invalid-feedback">
+                                Please enter location
+                            </div>
+                        </div>
+                        <!-- country -->
+                        <div class="mb-3 col-md-8">
+                            <label for="country" class="form-label">Counry</label>
+                            <input name="listing[country]" placeholder="India" id="country" type="text"
+                                class="form-control" required>
+                            <div class="invalid-feedback">
+                                Please enter Country
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upload image -->
+                    <div class="mb-3">
+                        <label for="url" class="form-label">Upload Image</label>
+                        <input name="listing[image]"  id="url" type="file" class="form-control">
+                        <div class="invalid-feedback">
+                            choose file 
+                        </div>
+                    </div>
+
+                    <button class="btn bg-black text-white">Add</button>
+                </form>
+                <br><br>
+            </div>
+        </div>
+        <br><br>
+    </body>

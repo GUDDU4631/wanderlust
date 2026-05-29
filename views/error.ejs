@@ -1,0 +1,12 @@
+<% layout('/layout/boilerplate') -%>
+    <body>
+        <div class="row mt-3">
+            <div class="alert alert-primary col-5 offset-1" role="alert">
+                <%= err.message%>
+                <%= err.status%>
+            </div> 
+        </div>
+        <script>
+            console.error("<%= err %>","<%= err.status %>");//show error on console bar
+        </script>
+    </body>

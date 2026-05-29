@@ -1,0 +1,84 @@
+<!-- review form and show all review  -->
+<div class="col-8 offset-1">
+    <!-- when the user is logged_in then form is visible on screen  -->
+    <% if(CurrUser) {%>
+        <form action="/listing/<%=list._id%>/review" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="comment">comment</label>
+                <input type="text" class="form-control " name="comment" id="comment" required>
+                <div class="invalid-feedback">
+                    please enter comment..
+                </div>
+            </div>
+            <div class="mb-3">
+                <fieldset class="starability-grow">
+                    <legend>First rating:</legend>
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0"
+                        aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" checked />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+            </div>
+            <button class="btn bg-black text-white">create reating</button>
+        </form>
+        <%}%>
+            <!-- all review show  -->
+            <div class="container mt-5">
+                <h2 class="mb-4 fw-bold">All Reviews</h2>
+
+                <div class="row g-4">
+                    <% for(let review of list.review){ %>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm border-0 rounded-4">
+
+                                <div class="card-body">
+
+                                    <!-- User Info -->
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title mb-0 fw-semibold">
+                                            <i class="fa-solid fa-user"></i>
+                                            <%= review.owner.username %>
+                                        </h5>
+
+                                        <small class="text-muted">
+                                            <%= review.createAt.toDateString().slice(4) %>
+                                        </small>
+                                    </div>
+                                    <!-- reating  -->
+                                    <p class="starability-result" data-rating="<%= review.rating %>"
+                                        style="transform: scale(0.5); transform-origin: left center; animation: none !important;">
+                                    </p>
+                                    <!-- Review Comment -->
+                                    <p class="card-text text-secondary mt-3">
+                                        "<%= review.comment %>"
+                                    </p>
+
+                                    <!-- Delete Button -->
+                                    <% if(CurrUser && CurrUser._id.equals(review.owner._id)){ %>
+
+                                        <form action="/listing/<%=list._id%>/review/<%=review._id%>?_method=DELETE"
+                                            method="POST">
+                                            <button class="btn btn-dark btn-sm rounded-pill px-3">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                        <% } %>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <% } %>
+                </div>
+            </div>
+</div>

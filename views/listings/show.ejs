@@ -1,0 +1,39 @@
+<% layout('./layout/boilerplate') -%>
+    <script>
+        const mapToken = "<%= process.env.MAP_API_TOKEN%>"
+        const coordinates = <%- JSON.stringify(list.geometry.coordinates) %>;
+    </script>
+    <body>
+
+        <div class="row">
+            <div class="col-8 offset-1">
+                <h3>Listing Details</h3>
+            </div>
+            <div class="col-8 offset-1">
+                <!-- image url  -->
+                <img src="  <%= list.image.url%>" class="show-img">
+            </div>
+            <div class="col-8 offset-1 mt-3">
+                <p> <b>
+                        <!-- listing title  -->
+                        <%= list.title%>
+                    </b></p>
+                <p><b>Owned by :</b>
+                    <%= list.owner[0].username%>
+                </p>
+                <!-- listing description  -->
+                <p>
+                    <%= list.description%>
+                </p>
+                <!-- listing price  -->
+                <p> &#x20B9;<%= list.price.toLocaleString("en-IN")%> /night</p> <!-- listing location  -->
+                <p>
+                    <%= list.location%>,<%= list.country%>
+                </p>
+            </div>
+            <%- include('../include/review.ejs') %>
+            <%- include('../include/ratingForm.ejs') %>
+            <div id="map"></div>
+        </div>
+        <script src="/js/map.js"></script>
+    </body>

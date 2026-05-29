@@ -1,0 +1,10 @@
+<%if(CurrUser && CurrUser._id.equals(list.owner[0]._id)){ %>
+    <div class="col-8 offset-1">
+        <!-- edit button  -->
+        <a href="/listing/<%=list._id%>/edit" class=" btn edit-btn text-white ">edit</a>
+        <!-- delete button  -->
+        <form class=" btn" action="/listing/<%= list._id%>/delete?_method=DELETE" method="POST"><button
+                class="btn  btn-dark">delete</button>
+        </form>
+    </div>
+    <%}%>
